@@ -9,7 +9,16 @@ ifeq ($(WITH_STEAMWORKS),1)
   steamworks := true
 endif
 
-ifeq ($(PANDORA),1)
+ifeq ($(MIYOO),1)
+  macosx := false
+  CPUARCH := arm
+  CC := /opt/mmiyoo/bin/arm-linux-gnueabihf-g++
+  CXX := /opt/mmiyoo/bin/arm-linux-gnueabihf-g++
+  LINKER := /opt/mmiyoo/bin/arm-linux-gnueabihf-g++
+  steamworks := false
+  CFLAGS += -mcpu=cortex-a9 -mfpu=neon -mfloat-abi=hard -ftree-vectorize -ffast-math -DMIYOO
+  CLIENTEXE := $(BINDIR)/postal1-arm
+else ifeq ($(PANDORA),1)
   macosx := false
   CPUARCH := arm
   CC := gcc
@@ -279,7 +288,6 @@ CFLAGS += -DLOCALE=US -DTARGET=POSTAL_2015
 
 # includes ...
 CFLAGS += -I$(SRCDIR)
-CFLAGS += -I$(SRCDIR)/SDL2/include
 CFLAGS += -I$(SRCDIR)/RSPiX
 CFLAGS += -I$(SRCDIR)/RSPiX/Inc
 CFLAGS += -I$(SRCDIR)/RSPiX/Src
@@ -300,7 +308,13 @@ ifeq ($(strip $(expiring_beta)),true)
   CFLAGS += -DBETAEXPIRE=$(shell date +%s)
 endif
 
-ifeq ($(strip $(macosx)),true)
+ifeq ($(MIYOO),1)
+  CFLAGS += -I/workspace/sdl2/sdl2/include
+  LDFLAGS += -L/workspace/sdl2/sdl2/build/.libs -lSDL2
+  LDFLAGS += -L /workspace/sdl2/sdl2 -L /workspace/sdl2/mmiyoo/lib
+  LDFLAGS += -lEGL -lGLESv2
+  LDFLAGS += -lmi_ao -lshmvar -lmi_common -lmi_sys -lmi_gfx
+else ifeq ($(strip $(macosx)),true)
   CFLAGS += -arch i386 -mmacosx-version-min=10.6
   LDFLAGS += -arch i386 -mmacosx-version-min=10.6
   LDFLAGS += -framework CoreFoundation -framework Cocoa
