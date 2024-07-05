@@ -1,0 +1,29 @@
+#!/bin/sh
+# Standalone Ports Script Template
+
+# main configuration :
+GameName="Postal 1"
+GameDir="Postal"
+GameExecutable="postal1.sh"
+GameDataFile="postal1.here"
+
+
+# additional configuration :
+KillAudioserver=1
+PerformanceMode=1
+
+# specific to this port :
+FullGamePath="/mnt/SDCARD/Roms/PORTS/Games/$GameDir"
+
+savedir="/mnt/SDCARD/Saves/CurrentProfile/saves/Postal1"
+configdir="/mnt/SDCARD/Saves/CurrentProfile/config/Postal1"
+mkdir -p "$savedir"
+mkdir -p "$configdir"
+
+export SDL_HIDE_BATTERY=1
+
+Arguments=""
+
+
+# running command line :
+/mnt/SDCARD/Emu/PORTS/launch_standalone.sh "$GameName" "$GameDir" "$GameExecutable" "$Arguments" "$GameDataFile" "$KillAudioserver" "$PerformanceMode"
