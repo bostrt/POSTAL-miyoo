@@ -8,24 +8,28 @@ These steps are distilled from https://github.com/bostrt/sdl2/tree/4f68d46493fc1
 
 ### Prepare Build Environment
 ```shell
-$ cd POSTAL-miyoo/sdl2
+$ cd POSTAL-miyoo/
+$ git submodule update --init --recursive
+
+$ cd sdl2/
 $ docker build -t mmiyoo .
 ```
 
 ## Enter Build Environment
 ```shell
-$ cd POSTAL-miyoo
+$ cd POSTAL-miyoo/
 $ docker run -it --rm -v $(pwd):/workspace mmiyoo /bin/bash
 ```
+*NOTE: include `:z` to volume mount for rootless podman*
 
 ## Build SDL2
 *Inside container*
 ```shell
-$ cd /workspace/sdl2
+$ cd /workspace/sdl2/
 $ make cfg
 $ make gpu
 $ make sdl2
-$ cd /workspace
+$ cd /workspace/
 $ make MIYOO=1
 ```
 
