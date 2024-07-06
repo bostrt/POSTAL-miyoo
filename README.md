@@ -2,6 +2,10 @@
 
 This is a port of POSTAL 1 for the Miyoo Mini+. This source code also includes community patch ([see here for context](https://github.com/RWS-Studios/POSTAL-SourceCode/issues/1)).
 
+# Default Button Mapping
+
+![images of keys](./keys.png)
+
 # Port Work
 
 The bulk of the work for this port is in the Makefile and can be seen here: https://github.com/bostrt/POSTAL-miyoo/commit/5aa36e6d2bd5d2c170651c099409760278559800.
