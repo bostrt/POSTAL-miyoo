@@ -4,6 +4,8 @@ This is a port of POSTAL 1 for the Miyoo Mini+. This source code also includes c
 
 # Default Button Mapping
 
+Below is image of default button mapping. If you want to change them, here's a reference for what buttons map to what keyboard keys: https://gist.github.com/bostrt/8cbfcea6c6dbd6d3c50669e84b9863ca
+
 ![images of keys](./keys.png)
 
 # Port Work
